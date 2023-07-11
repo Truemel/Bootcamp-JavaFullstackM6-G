@@ -10,6 +10,22 @@
     <title>Crear Capacitacion</title>
 </head>
 <body class="container">
-Crear Capacitación
+<form action="/capacitacion/crear-capacitacion" method="post" class="form">
+    <div class="mb-3">
+        <label for="id" class="form-label">ID:</label>
+        <input type="text" class="form-control" id="id" placeholder="ID" name="id">
+    </div>
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nombre capacitación:</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nombre" name="nombre">
+    </div>
+    <div class="mb-3">
+        <label for="det" class="form-label">Detalle:</label>
+        <textarea rows="20" cols="100" class="form-control" id="det" placeholder="Detalle" name="detalle"></textarea>
+    </div>
+    <div class="rows">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
 </body>
 </html>

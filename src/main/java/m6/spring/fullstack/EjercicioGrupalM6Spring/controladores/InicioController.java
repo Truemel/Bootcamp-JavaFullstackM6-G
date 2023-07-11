@@ -1,4 +1,4 @@
-package m6.spring.fullstack.EjercicioGrupalM6Spring.controlador;
+package m6.spring.fullstack.EjercicioGrupalM6Spring.controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
