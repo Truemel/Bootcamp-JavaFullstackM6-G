@@ -1,31 +1,33 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.dao;
 
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Capacitacion;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper.CapacitacionMapper;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 
+@Component
 public class CapacitacionDao implements ICapacitacionDao{
 
-    private ArrayList<Capacitacion> lista = new ArrayList<Capacitacion>();
+    JdbcTemplate template;
+    private Log log = LogFactory.getLog(CapacitacionDao.class);
 
-    public CapacitacionDao(){
-        lista.add(new Capacitacion(1, "Nombre1", "Detalle1"));
-        lista.add(new Capacitacion(2, "Nombre2", "Detalle2"));
-        lista.add(new Capacitacion(3, "Nombre3", "Detalle3"));
+    public CapacitacionDao(DataSource data){
+        this.template = new JdbcTemplate(data);
     }
     @Override
     public ArrayList<Capacitacion> obtenerCapacitaciones() {
-        return lista;
+        log.info("listando capacitaciones");
+        return (ArrayList<Capacitacion>) template.query("SELECT id, nombre, detalle from capacitacion", new CapacitacionMapper());
     }
 
     @Override
     public boolean crearCapacitacion(Capacitacion capa) {
-        try {
-            lista.add(capa);
-            return true;
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return false;
+        log.info("generando capacitación");
+        return template.update("INSERT INTO capacitacion (nombre, detalle) VALUES (?, ?)", capa.getNombre(), capa.getDetalle()) == 1;
     }
 }
