@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="css/styles.css" rel="stylesheet">
+    <title>Crear Usuario</title>
+</head>
+<body class="container">
+<div th:replace="menu :: navy"></div>
+<form th:action="@{/usuario/crear-usuario}" method="post" class="form">
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" id="nom" placeholder="Nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="ape" class="form-label">Apellido:</label>
+        <input type="text" class="form-control" id="ape" placeholder="Apellido" name="apellido" required>
+    </div>
+    <div class="mb-3">
+        <label for="correo" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="correo" placeholder="Email" name="correo" required>
+    </div>
+    <div class="mb-3">
+        <label for="rut" class="form-label">Rut:</label>
+        <input type="number" class="form-control" id="rut" placeholder="Rut" name="rut" required>
+    </div>
+
+    <div class="mb-3">
+        <div class="form-check">
+            <input type="radio" class="form-check-input" onclick="changeUsuarioType(1)" id="cliente" name="tipo" value="CLIENTE" checked>
+            <label for="cliente" class="form-check-label">Cliente</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" onclick="changeUsuarioType(2)" id="admin" name="tipo" value="ADMINISTRATIVO">
+            <label for="admin" class="form-check-label">Administrativo</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" onclick="changeUsuarioType(3)" id="profe" name="tipo" value="PROFESIONAL">
+            <label for="profe" class="form-check-label">Profesional</label>
+        </div>
+    </div>
+
+    <fieldset id="clienteSet">
+    <div class="mb-3">
+        <label for="age" class="form-label">Edad:</label>
+        <input type="number" class="form-control" id="age" placeholder="Edad" name="edad" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Telefono:</label>
+        <input type="number" class="form-control" id="phone" placeholder="Telefono" name="telefono" required>
+    </div>
+    <div class="mb-3">
+        <label for="direc" class="form-label">Direccion:</label>
+        <input type="text" class="form-control" id="direc" placeholder="Dirección" name="direccion" required>
+    </div>
+    <div class="mb-3">
+        <label for="capac" class="form-label">ID Capacitación:</label>
+        <input type="number" class="form-control" id="capac" placeholder="1" name="idCapac">
+    </div>
+    </fieldset>
+
+    <fieldset id="profeSet" disabled hidden="hidden">
+        <div class="mb-3">
+            <label for="phone2" class="form-label">Telefono:</label>
+            <input type="number" class="form-control" id="phone2" placeholder="Telefono" name="telefono" required>
+        </div>
+        <div class="mb-3">
+            <label for="carg" class="form-label">Cargo:</label>
+            <input type="text" class="form-control" id="carg" placeholder="Cargo" name="cargo" required>
+        </div>
+    </fieldset>
+
+    <fieldset id="adminSet" disabled hidden="hidden">
+        <div class="mb-3">
+            <label for="area" class="form-label">Area:</label>
+            <input type="text" class="form-control" id="area" placeholder="Area" name="area" required>
+        </div>
+    </fieldset>
+
+    <div class="rows">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+<script>
+    function changeUsuarioType(type){
+        var cliente = document.getElementById("clienteSet");
+        var admin = document.getElementById("adminSet");
+        var profes = document.getElementById("profeSet");
+        cliente.setAttribute("disabled", "");
+        cliente.setAttribute("hidden", "");
+        admin.setAttribute("disabled", "");
+        admin.setAttribute("hidden", "");
+        profes.setAttribute("disabled", "");
+        profes.setAttribute("hidden", "");
+        if(type == 1){
+            cliente.removeAttribute("disabled", "");
+            cliente.removeAttribute("hidden", "");
+        }else if(type == 2){
+            admin.removeAttribute("disabled", "");
+            admin.removeAttribute("hidden", "");
+        }else{
+            profes.removeAttribute("disabled", "");
+            profes.removeAttribute("hidden", "");
+        }
+    }
+</script>
+</body>
+</html>

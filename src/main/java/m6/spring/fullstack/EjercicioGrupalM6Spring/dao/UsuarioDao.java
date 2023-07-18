@@ -36,15 +36,15 @@ public class UsuarioDao implements IUsuarioDao{
      * @return int
      */
     private int insertUserAndGetKey(Usuario usu){
-        String sql = "INSERT INTO usuario (nombre, apellido, correo, rut) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO usuario (nombre, apellido, correo, rut, tipo) VALUES (?,?,?,?,?)";
         List<SqlParameter> param = List.of(new SqlParameter(Types.VARCHAR, "nombre"),
                 new SqlParameter(Types.VARCHAR, "apellido"), new SqlParameter(Types.VARCHAR, "correo"),
-                new SqlParameter(Types.VARCHAR, "rut"));
+                new SqlParameter(Types.VARCHAR, "rut"), new SqlParameter(Types.OTHER, "tipo"));
         PreparedStatementCreatorFactory pFactory = new PreparedStatementCreatorFactory(sql, param);
         pFactory.setReturnGeneratedKeys(true);
         pFactory.setGeneratedKeysColumnNames("id");
         PreparedStatementCreator pCreator = pFactory.newPreparedStatementCreator(List.of(usu.getNombre(),
-                usu.getApellido(), usu.getCorreo(), usu.getRut()));
+                usu.getApellido(), usu.getCorreo(), usu.getRut(), usu.getTipo()));
         GeneratedKeyHolder key = new GeneratedKeyHolder();
         template.update(pCreator, key);
         return Objects.requireNonNull(key.getKey()).intValue();
@@ -62,8 +62,8 @@ public class UsuarioDao implements IUsuarioDao{
 
     @Override
     public boolean addUsuario(Usuario usu) {
-        return template.update("INSERT INTO usuario (nombre, apellido, correo, rut) VALUES (?,?,?,?)",usu.getNombre(),
-                usu.getApellido(), usu.getCorreo(), usu.getRut()) == 1;
+        return template.update("INSERT INTO usuario (nombre, apellido, correo, rut, tipo) VALUES (?,?,?,?,?)",usu.getNombre(),
+                usu.getApellido(), usu.getCorreo(), usu.getRut(), usu.getTipo()) == 1;
     }
 
     @Override
@@ -73,8 +73,8 @@ public class UsuarioDao implements IUsuarioDao{
 
     @Override
     public boolean updateUsuario(Usuario usu) {
-        return template.update("UPDATE usuario SET nombre = ?, apellido = ?, correo = ?, rut = ? WHERE id = ?",
-                usu.getNombre(), usu.getApellido(), usu.getCorreo(), usu.getRut(), usu.getId()) == 1;
+        return template.update("UPDATE usuario SET nombre = ?, apellido = ?, correo = ?, rut = ?, tipo = ? WHERE id = ?",
+                usu.getNombre(), usu.getApellido(), usu.getCorreo(), usu.getRut(), usu.getTipo(), usu.getId()) == 1;
     }
 
     @Override

@@ -2,20 +2,36 @@ package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo;
 
 public class Usuario {
 
+    public static enum Tipo {CLIENTE, ADMINISTRATIVO, PROFESIONAL};
     private int id;
     private String nombre, apellido, correo, rut;
+    private Tipo tipo;
 
     public Usuario(){
         id = 0;
         nombre = apellido = correo = rut = "";
+        tipo = Tipo.CLIENTE;
     }
 
-    public Usuario(int id, String nombre, String apellido, String correo, String rut){
+    public Usuario(int id, String nombre, String apellido, String correo, String rut, Tipo tipo){
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.rut = rut;
+        this.tipo = tipo;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = Tipo.valueOf(tipo.toUpperCase());
     }
 
     public String getApellido() {
@@ -60,7 +76,13 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", rut="
-                + rut + "]";
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correo='" + correo + '\'' +
+                ", rut='" + rut + '\'' +
+                ", tipo=" + tipo +
+                '}';
     }
 }

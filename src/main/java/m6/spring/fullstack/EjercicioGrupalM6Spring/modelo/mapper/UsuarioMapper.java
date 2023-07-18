@@ -10,6 +10,6 @@ public class UsuarioMapper implements RowMapper<Usuario> {
     @Override
     public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido"),
-                rs.getString("correo"), rs.getString("rut"));
+                rs.getString("correo"), rs.getString("rut"), Usuario.Tipo.valueOf(rs.getString("tipo")));
     }
 }
