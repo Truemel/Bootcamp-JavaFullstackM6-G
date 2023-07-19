@@ -6,5 +6,6 @@ import java.util.ArrayList;
 
 public interface ICapacitacionDao {
     public ArrayList<Capacitacion> obtenerCapacitaciones();
+    public Capacitacion getCapacitacionById(int id);
     public boolean crearCapacitacion(Capacitacion capa);
 }

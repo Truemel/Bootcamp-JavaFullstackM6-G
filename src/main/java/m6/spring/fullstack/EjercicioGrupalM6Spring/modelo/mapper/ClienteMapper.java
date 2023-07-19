@@ -1,6 +1,7 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper;
 
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Cliente;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Usuario;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -11,8 +12,8 @@ public class ClienteMapper implements RowMapper<Cliente> {
     public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Cliente(rs.getInt("usuId"), rs.getString("nombre"),
                 rs.getString("apellido"), rs.getString("correo"),
-                rs.getString("rut"), rs.getInt("cliId"),
-                rs.getShort("edad"), rs.getString("telefono"),
+                rs.getString("rut"), rs.getString("tipo"),
+                rs.getInt("cliId"), rs.getShort("edad"), rs.getString("telefono"),
                 rs.getString("direccion"), rs.getInt("capaci_id"));
     }
 }

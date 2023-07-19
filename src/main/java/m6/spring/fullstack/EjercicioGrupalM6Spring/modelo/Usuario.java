@@ -19,7 +19,16 @@ public class Usuario {
         this.apellido = apellido;
         this.correo = correo;
         this.rut = rut;
-        this.tipo = tipo;
+        setTipo(tipo);
+    }
+
+    public Usuario(int id, String nombre, String apellido, String correo, String rut, String tipo){
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.rut = rut;
+        setTipo(tipo);
     }
 
     public Tipo getTipo() {

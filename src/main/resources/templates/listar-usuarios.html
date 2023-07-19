@@ -26,8 +26,8 @@
         <tbody>
         <tr th:each="c:${lista}">
             <td th:text="${c.getId()}"></td>
-            <td th:text="${c.getNombre()} $c.getApellido()}"></td>
-            <td th:text="${c.getEmail()}"></td>
+            <td><span th:text="${c.getNombre()}"></span> <span th:text="${c.getApellido()}"></span></td>
+            <td th:text="${c.getCorreo()}"></td>
             <td th:text="${c.getRut()}"></td>
             <td th:text="${c.getTipo()}"></td>
         </tr>

@@ -19,6 +19,10 @@ public class CapacitacionService {
         return dao.obtenerCapacitaciones();
     }
 
+    public Capacitacion getCapacitacionById(int id){
+        return dao.getCapacitacionById(id);
+    }
+
     public boolean addCapacitacion(Capacitacion capa){
         return dao.crearCapacitacion(capa);
     }

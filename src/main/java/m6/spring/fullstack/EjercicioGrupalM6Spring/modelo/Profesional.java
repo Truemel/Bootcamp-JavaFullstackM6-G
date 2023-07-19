@@ -11,9 +11,17 @@ public class Profesional extends Usuario{
         telefono = cargo = "";
     }
 
-    public Profesional(int id, String nombre,  String apellido, String correo, String rut, int idProfes,
+    public Profesional(int id, String nombre,  String apellido, String correo, String rut, Tipo tipo, int idProfes,
                        String telefono, String cargo) {
-        super(id, nombre, apellido, correo, rut);
+        super(id, nombre, apellido, correo, rut, tipo);
+        this.idProfes = idProfes;
+        this.cargo = cargo;
+        this.telefono = telefono;
+    }
+
+    public Profesional(int id, String nombre,  String apellido, String correo, String rut, String tipo, int idProfes,
+                       String telefono, String cargo) {
+        super(id, nombre, apellido, correo, rut, tipo);
         this.idProfes = idProfes;
         this.cargo = cargo;
         this.telefono = telefono;

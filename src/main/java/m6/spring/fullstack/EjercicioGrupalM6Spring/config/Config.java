@@ -27,6 +27,10 @@ public class Config {
         driverManagerDataSource.setUrl(environment.getProperty("url"));
         driverManagerDataSource.setUsername(environment.getProperty("db_user"));
         driverManagerDataSource.setPassword(environment.getProperty("db_password"));
+        /*System.out.println(environment.getProperty("driver").toString());
+        System.out.println(environment.getProperty("url").toString());
+        System.out.println(environment.getProperty("db_user").toString());
+        System.out.println(environment.getProperty("db_password").toString());*/
         return driverManagerDataSource;
     }
 }

@@ -1,9 +1,7 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.controladores;
 
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Administrativo;
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Cliente;
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Profesional;
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Usuario;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.*;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.CapacitacionService;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UsuarioController {
 
     private UsuarioService service;
+    private CapacitacionService capaServ;
 
-    public UsuarioController(UsuarioService service){
+    public UsuarioController(UsuarioService service, CapacitacionService capaServ){
         this.service = service;
+        this.capaServ = capaServ;
     }
 
     @GetMapping("/listar-usuarios")
@@ -33,6 +33,26 @@ public class UsuarioController {
         return "crear-usuario";
     }
 
+    @PostMapping("/crear-usuario/1")
+    public String addCrearUsuario(@ModelAttribute Cliente usuario){
+        if(capaServ.getCapacitacionById(usuario.getIdCapac()) != null)
+            service.addCliente(usuario);
+        return "crear-usuario";
+    }
+
+    @PostMapping("/crear-usuario/2")
+    public String addCrearUsuario(@ModelAttribute Administrativo usuario){
+        service.addAdministrativo(usuario);
+        return "crear-usuario";
+    }
+
+    @PostMapping("/crear-usuario/3")
+    public String addCrearUsuario(@ModelAttribute Profesional usuario){
+        service.addProfesional(usuario);
+        return "crear-usuario";
+    }
+
+    /*
     @PostMapping("/crear-usuario")
     public String addCrearUsuario(@ModelAttribute Usuario usuario){
         if(usuario.getClass() == Cliente.class) {
@@ -47,4 +67,5 @@ public class UsuarioController {
         }
         return "crear-usuario";
     }
+     */
 }

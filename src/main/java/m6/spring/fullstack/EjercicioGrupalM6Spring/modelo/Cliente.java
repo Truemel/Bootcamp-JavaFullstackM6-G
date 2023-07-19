@@ -13,9 +13,19 @@ public class Cliente extends Usuario{
         telefono = direccion = "";
     }
 
-    public Cliente(int id, String nombre, String apellido, String correo, String rut, int idCliente, short edad,
+    public Cliente(int id, String nombre, String apellido, String correo, String rut, Tipo tipo, int idCliente, short edad,
                    String telefono, String direccion, int idCapac) {
-        super(id, nombre, apellido, correo, rut);
+        super(id, nombre, apellido, correo, rut, tipo);
+        this.idCliente = idCliente;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.idCapac = idCapac;
+    }
+
+    public Cliente(int id, String nombre, String apellido, String correo, String rut, String tipo, int idCliente, short edad,
+                   String telefono, String direccion, int idCapac) {
+        super(id, nombre, apellido, correo, rut, tipo);
         this.idCliente = idCliente;
         this.edad = edad;
         this.telefono = telefono;

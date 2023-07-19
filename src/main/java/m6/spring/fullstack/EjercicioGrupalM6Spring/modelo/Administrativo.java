@@ -11,8 +11,14 @@ public class Administrativo extends Usuario{
         area = "";
     }
 
-    public Administrativo(int id, String nombre, String apellido, String correo, String rut, int idAdmin, String area) {
-        super(id, nombre, apellido, correo, rut);
+    public Administrativo(int id, String nombre, String apellido, String correo, String rut, Tipo tipo, int idAdmin, String area) {
+        super(id, nombre, apellido, correo, rut, tipo);
+        this.idAdmin = idAdmin;
+        this.area = area;
+    }
+
+    public Administrativo(int id, String nombre, String apellido, String correo, String rut, String tipo, int idAdmin, String area) {
+        super(id, nombre, apellido, correo, rut, tipo);
         this.idAdmin = idAdmin;
         this.area = area;
     }

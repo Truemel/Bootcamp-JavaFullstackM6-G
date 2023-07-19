@@ -11,7 +11,8 @@
 </head>
 <body class="container">
 <div th:replace="menu :: navy"></div>
-<form th:action="@{/usuario/crear-usuario}" method="post" class="form">
+<!-- <form th:action="@{/usuario/crear-usuario}" method="post" class="form" id="post"> -->
+<form action="/usuario/crear-usuario/1" method="post" class="form" id="post">
     <div class="mb-3">
         <label for="nom" class="form-label">Nombre:</label>
         <input type="text" class="form-control" id="nom" placeholder="Nombre" name="nombre" required>
@@ -59,7 +60,7 @@
     </div>
     <div class="mb-3">
         <label for="capac" class="form-label">ID Capacitación:</label>
-        <input type="number" class="form-control" id="capac" placeholder="1" name="idCapac">
+        <input type="number" class="form-control" id="capac" placeholder="ID Capacitación" name="idCapac" required>
     </div>
     </fieldset>
 
@@ -87,6 +88,7 @@
 </form>
 <script>
     function changeUsuarioType(type){
+    var post = document.getElementById("post");
         var cliente = document.getElementById("clienteSet");
         var admin = document.getElementById("adminSet");
         var profes = document.getElementById("profeSet");
@@ -99,12 +101,15 @@
         if(type == 1){
             cliente.removeAttribute("disabled", "");
             cliente.removeAttribute("hidden", "");
+            post.setAttribute("action", "/usuario/crear-usuario/1");
         }else if(type == 2){
             admin.removeAttribute("disabled", "");
             admin.removeAttribute("hidden", "");
+            post.setAttribute("action", "/usuario/crear-usuario/2");
         }else{
             profes.removeAttribute("disabled", "");
             profes.removeAttribute("hidden", "");
+            post.setAttribute("action", "/usuario/crear-usuario/3");
         }
     }
 </script>
