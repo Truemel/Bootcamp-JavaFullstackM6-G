@@ -7,24 +7,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link th:href="@{/css/styles.css}" rel="stylesheet">
-    <title>Contacto</title>
+    <title>Crear Pago</title>
 </head>
 <body class="container">
 <div th:replace="menu :: navy"></div>
-<form th:action="@{/contacto}" method="post" class="form">
+<form th:action="@{/pago/crear-pago}" method="post" class="form">
     <div class="mb-3">
-        <label for="nom" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="nom" placeholder="Nombre" name="nombre">
-    </div>
-    <div class="mb-3 mt-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+        <label for="idC" class="form-label">ID Cliente:</label>
+        <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="idC" placeholder="ID Cliente" name="idCliente">
     </div>
     <div class="mb-3">
-        <label for="men" class="form-label">Mensaje:</label><br>
-        <textarea rows="20" cols="100" id="men" placeholder="Mensaje" name="mensaje"></textarea>
+        <label for="mon" class="form-label">Monto:</label>
+        <input type="number" pattern="[1-9][0-9]*" class="form-control" id="mon" placeholder="Monto" name="monto">
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <div class="mb-3">
+        <label for="fec" class="form-label">Fecha:</label>
+        <input type="date" class="form-control" id="fec" placeholder="Fecha" name="fecha">
+    </div>
+    <div class="rows">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
 </form>
 </body>
 </html>

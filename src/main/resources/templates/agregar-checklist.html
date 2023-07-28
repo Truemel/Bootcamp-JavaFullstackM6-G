@@ -7,18 +7,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link th:href="@{/css/styles.css}" rel="stylesheet">
-    <title>Crear Capacitacion</title>
+    <title>Agregar Checklist</title>
 </head>
 <body class="container">
 <div th:replace="menu :: navy"></div>
-<form th:action="@{/capacitacion/crear-capacitacion}" method="post" class="form">
+<form th:action="@{/visita/agregar-checklist}" method="post" class="form">
     <div class="mb-3">
-        <label for="nom" class="form-label">Nombre capacitación:</label>
-        <input type="text" class="form-control" id="nom" placeholder="Nombre" name="nombre">
+        <label for="idv" class="form-label">ID Visita:</label>
+        <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="idv" placeholder="ID Visita" name="idVisit">
     </div>
     <div class="mb-3">
         <label for="det" class="form-label">Detalle:</label>
         <textarea rows="20" cols="100" class="form-control" id="det" placeholder="Detalle" name="detalle"></textarea>
+    </div>
+    <div class="mb-3">
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="pend" name="estado" value="PENDIENTE" checked>
+            <label for="pend" class="form-check-label">Pendiente</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="comp" name="estado" value="COMPLETADO">
+            <label for="comp" class="form-check-label">Completado</label>
+        </div>
     </div>
     <div class="rows">
         <button type="submit" class="btn btn-primary">Enviar</button>

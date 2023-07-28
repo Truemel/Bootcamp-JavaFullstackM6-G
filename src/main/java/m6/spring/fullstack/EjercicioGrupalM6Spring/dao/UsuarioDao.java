@@ -8,7 +8,6 @@ import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper.AdministrativoM
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper.ClienteMapper;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper.ProfesionalMapper;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper.UsuarioMapper;
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.CapacitacionService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -107,7 +106,7 @@ public class UsuarioDao implements IUsuarioDao{
     public ArrayList<Cliente> getClienteList() {
         try {
             return (ArrayList<Cliente>) template.query("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, cliente.id as cliId, edad, telefono, direccion, capaci_id FROM cliente INNER JOIN usuario ON "
+                    + "rut, tipo, cliente.id as cliId, edad, telefono, direccion, capaci_id FROM cliente INNER JOIN usuario ON "
                     + "cliente.usuario_id = usuario.id", new ClienteMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -119,7 +118,7 @@ public class UsuarioDao implements IUsuarioDao{
     public ArrayList<Profesional> getProfesionalList() {
         try {
             return (ArrayList<Profesional>) template.query("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, profesional.id as proId, telefono, cargo FROM profesional INNER JOIN usuario ON "
+                    + "rut, tipo, profesional.id as proId, telefono, cargo FROM profesional INNER JOIN usuario ON "
                     + "profesional.usuario_id = usuario.id", new ProfesionalMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -131,7 +130,7 @@ public class UsuarioDao implements IUsuarioDao{
     public ArrayList<Administrativo> getAdministrativoList() {
         try {
             return (ArrayList<Administrativo>) template.query("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, administrativo.id as admId, area FROM administrativo INNER JOIN usuario ON "
+                    + "rut, tipo, administrativo.id as admId, area FROM administrativo INNER JOIN usuario ON "
                     + "administrativo.usuario_id = usuario.id", new AdministrativoMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -143,7 +142,7 @@ public class UsuarioDao implements IUsuarioDao{
     public Cliente getClienteById(int id) {
         try {
             return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, cliente.id as cliId, edad, telefono, direccion, capaci_id FROM cliente INNER JOIN usuario ON "
+                    + "rut, tipo, cliente.id as cliId, edad, telefono, direccion, capaci_id FROM cliente INNER JOIN usuario ON "
                     + "cliente.usuario_id = usuario.id WHERE id = "+id, new ClienteMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -155,7 +154,7 @@ public class UsuarioDao implements IUsuarioDao{
     public Profesional getProfesionalById(int id) {
         try {
             return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, profesional.id as proId, telefono, cargo FROM profesional INNER JOIN usuario ON "
+                    + "rut, tipo, profesional.id as proId, telefono, cargo FROM profesional INNER JOIN usuario ON "
                     + "profesional.usuario_id = usuario.id WHERE id = "+id, new ProfesionalMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -167,7 +166,7 @@ public class UsuarioDao implements IUsuarioDao{
     public Administrativo getAdministrativoById(int id) {
         try {
             return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
-                    + "rut, administrativo.id as admId, area FROM administrativo INNER JOIN usuario ON "
+                    + "rut, tipo, administrativo.id as admId, area FROM administrativo INNER JOIN usuario ON "
                     + "administrativo.usuario_id = usuario.id WHERE id = "+id, new AdministrativoMapper());
         }catch (DataAccessException e){
             e.printStackTrace();
@@ -274,6 +273,42 @@ public class UsuarioDao implements IUsuarioDao{
         }catch (DataAccessException e){
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public Cliente getClienteByUserId(int id) {
+        try {
+            return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
+                    + "rut, tipo, cliente.id as cliId, edad, telefono, direccion, capaci_id FROM cliente INNER JOIN usuario ON "
+                    + "cliente.usuario_id = usuario.id WHERE cliente.usuario_id = "+id, new ClienteMapper());
+        }catch (DataAccessException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Profesional getProfesionalByUserId(int id) {
+        try {
+            return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
+                    + "rut, tipo, profesional.id as proId, telefono, cargo FROM profesional INNER JOIN usuario ON "
+                    + "profesional.usuario_id = usuario.id WHERE profesional.usuario_id = "+id, new ProfesionalMapper());
+        }catch (DataAccessException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Administrativo getAdministrativoByUserId(int id) {
+        try {
+            return template.queryForObject("SELECT usuario.id as usuId, nombre, apellido, correo,"
+                    + "rut, tipo, administrativo.id as admId, area FROM administrativo INNER JOIN usuario ON "
+                    + "administrativo.usuario_id = usuario.id WHERE administrativo.usuario_id = "+id, new AdministrativoMapper());
+        }catch (DataAccessException e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

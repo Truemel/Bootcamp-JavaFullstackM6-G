@@ -28,4 +28,7 @@ public interface IUsuarioDao {
     public boolean updateCliente(Cliente cli);
     public boolean updateProfesional(Profesional profe);
     public boolean updateAdministrativo(Administrativo admin);
+    public Cliente getClienteByUserId(int id);
+    public Profesional getProfesionalByUserId(int id);
+    public Administrativo getAdministrativoByUserId(int id);
 }

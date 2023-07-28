@@ -1,14 +1,13 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.controladores;
 
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.*;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Administrativo;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Cliente;
+import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Profesional;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.CapacitacionService;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/usuario")
@@ -50,6 +49,42 @@ public class UsuarioController {
     public String addCrearUsuario(@ModelAttribute Profesional usuario){
         service.addProfesional(usuario);
         return "crear-usuario";
+    }
+
+    @GetMapping("/editar-cliente/{id}")
+    public String editCliente(@PathVariable int id, Model model){
+        model.addAttribute("cliente", service.getClienteByUserId(id));
+        return "editar-cliente";
+    }
+
+    @GetMapping("/editar-profesional/{id}")
+    public String editProfesional(@PathVariable int id, Model model){
+        model.addAttribute("profes", service.getProfesionalByUserId(id));
+        return "editar-profesional";
+    }
+
+    @GetMapping("/editar-administrativo/{id}")
+    public String editAdministrativo(@PathVariable int id, Model model){
+        model.addAttribute("admin", service.getAdministrativoByUserId(id));
+        return "editar-administrativo";
+    }
+
+    @PostMapping("/editar-cliente")
+    public String editCliente(@RequestBody Cliente cli){
+        service.updateCliente(cli);
+        return "redirect:/listar-usuarios";
+    }
+
+    @PostMapping("/editar-profesional")
+    public String editProdesional(@RequestBody Profesional prof){
+        service.updateProfesional(prof);
+        return "redirect:/listar-usuarios";
+    }
+
+    @PostMapping("/editar-administrativo")
+    public String editAdministrativo(@RequestBody Administrativo admin){
+        service.updateAdministrativo(admin);
+        return "redirect:/listar-usuarios";
     }
 
     /*

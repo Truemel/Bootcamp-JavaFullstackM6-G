@@ -1,6 +1,5 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.controladores;
 
-import m6.spring.fullstack.EjercicioGrupalM6Spring.dao.CapacitacionDao;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Capacitacion;
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.service.CapacitacionService;
 import org.springframework.stereotype.Controller;

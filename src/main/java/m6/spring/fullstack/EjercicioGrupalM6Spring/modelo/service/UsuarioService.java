@@ -97,4 +97,16 @@ public class UsuarioService {
     public boolean updateAdministrativo(Administrativo admin){
         return dao.updateAdministrativo(admin);
     }
+
+    public Cliente getClienteByUserId(int id){
+        return dao.getClienteByUserId(id);
+    }
+
+    public Profesional getProfesionalByUserId(int id){
+        return dao.getProfesionalByUserId(id);
+    }
+
+    public Administrativo getAdministrativoByUserId(int id){
+        return dao.getAdministrativoByUserId(id);
+    }
 }

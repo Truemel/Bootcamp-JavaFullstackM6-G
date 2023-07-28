@@ -1,7 +1,5 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo;
 
-import m6.spring.fullstack.EjercicioGrupalM6Spring.config.Config;
-
 public class Contacto {
 
     private String nombre, email, mensaje;

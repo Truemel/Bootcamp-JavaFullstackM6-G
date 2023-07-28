@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <title>Nueva Visita</title>
+</head>
+<body class="container">
+<div th:replace="menu :: navy"></div>
+<form th:action="@{/visita/nueva-visita}" method="post" class="form">
+    <div class="mb-3">
+        <label for="idC" class="form-label">ID Cliente:</label>
+        <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="idC" placeholder="ID Cliente" name="idCliente">
+    </div>
+    <div class="mb-3">
+        <label for="idP" class="form-label">ID Profesional:</label>
+        <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="idP" placeholder="ID Profesional" name="idProfe">
+    </div>
+    <div class="mb-3">
+        <label for="fec" class="form-label">Fecha:</label>
+        <input type="date" class="form-control" id="fec" placeholder="Fecha" name="fecha">
+    </div>
+    <div class="mb-3">
+        <label for="hor" class="form-label">Hora:</label>
+        <input type="time" class="form-control" id="hor" placeholder="Hora" name="hora">
+    </div>
+    <div class="mb-3">
+        <label for="lug" class="form-label">Lugar:</label>
+        <input type="text" class="form-control" id="lug" placeholder="Lugar" name="lugar">
+    </div>
+    <div class="mb-3">
+        <label for="det" class="form-label">Detalle:</label>
+        <textarea rows="20" cols="100" class="form-control" id="det" placeholder="Detalle" name="detalle"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="rea" class="form-check-label">Realizado:</label>
+        <input type="checkbox" class="form-check-input" id="rea" placeholder="Realizado" name="realizado" value="true">
+    </div>
+    <div class="rows">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+</body>
+</html>

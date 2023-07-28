@@ -1,7 +1,6 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.mapper;
 
 import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Administrativo;
-import m6.spring.fullstack.EjercicioGrupalM6Spring.modelo.Usuario;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
