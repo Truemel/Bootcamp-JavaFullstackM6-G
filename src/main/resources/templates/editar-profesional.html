@@ -13,14 +13,14 @@
 <div th:replace="menu :: navy"></div>
 <form th:action="@{/usuario/editar-profesional}" method="post" class="form">
     <div th:each="c:${profes}">
-        <input type="number" class="form-control" th:text="${c.getIdProfes()}" name="idProfes" hidden="hidden">
+        <input type="number" class="form-control" th:value="${c.getIdProfes()}" name="idProfes" hidden="hidden">
         <div class="mb-3">
             <label for="tel" class="form-label">Telefono:</label>
-            <input type="number" class="form-control" id="tel" placeholder="Telefono" name="telefono">
+            <input type="number" class="form-control" id="tel" th:value="${c.getTelefono()}" placeholder="Telefono" name="telefono">
         </div>
         <div class="mb-3">
             <label for="car" class="form-label">Cargo:</label>
-            <input type="text" class="form-control" id="car" placeholder="Cargo" name="cargo">
+            <input type="text" class="form-control" id="car" placeholder="Cargo" name="cargo" th:value="${c.getCargo()}">
         </div>
         <div class="rows">
             <button type="submit" class="btn btn-primary">Enviar</button>

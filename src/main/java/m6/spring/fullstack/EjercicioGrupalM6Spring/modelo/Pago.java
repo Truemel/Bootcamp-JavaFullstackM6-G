@@ -1,6 +1,7 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Pago {
 
@@ -11,7 +12,7 @@ public class Pago {
     public Pago(){
         id = idCliente = 0;
         monto = 0;
-        fecha = new Date();
+        fecha = new Date(0);
     }
 
     public Pago(int id, int idCliente, float monto, Date fecha){

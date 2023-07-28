@@ -70,21 +70,21 @@ public class UsuarioController {
     }
 
     @PostMapping("/editar-cliente")
-    public String editCliente(@RequestBody Cliente cli){
+    public String editCliente(@ModelAttribute Cliente cli){
         service.updateCliente(cli);
-        return "redirect:/listar-usuarios";
+        return "redirect:/usuario/listar-usuarios";
     }
 
     @PostMapping("/editar-profesional")
-    public String editProdesional(@RequestBody Profesional prof){
+    public String editProdesional(@ModelAttribute Profesional prof){
         service.updateProfesional(prof);
-        return "redirect:/listar-usuarios";
+        return "redirect:/usuario/listar-usuarios";
     }
 
     @PostMapping("/editar-administrativo")
-    public String editAdministrativo(@RequestBody Administrativo admin){
+    public String editAdministrativo(@ModelAttribute Administrativo admin){
         service.updateAdministrativo(admin);
-        return "redirect:/listar-usuarios";
+        return "redirect:/usuario/listar-usuarios";
     }
 
     /*

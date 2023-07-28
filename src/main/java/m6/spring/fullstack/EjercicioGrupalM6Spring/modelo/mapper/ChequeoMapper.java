@@ -9,6 +9,7 @@ import java.sql.SQLException;
 public class ChequeoMapper implements RowMapper<Chequeo> {
     @Override
     public Chequeo mapRow(ResultSet rs, int rowNum) throws SQLException {
+        System.out.println(rs.getString("estado"));
         return new Chequeo(rs.getInt("id"), rs.getInt("visita_id"),
                 rs.getString("detalle"), rs.getString("estado"));
     }

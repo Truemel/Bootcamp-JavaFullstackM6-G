@@ -13,10 +13,10 @@
 <div th:replace="menu :: navy"></div>
 <form th:action="@{/usuario/editar-administrativo}" method="post" class="form">
     <div th:each="c:${admin}">
-        <input type="number" class="form-control" th:text="${c.getIdAdmin()}" name="idAdmin" hidden="hidden">
+        <input type="number" class="form-control" th:value="${c.getIdAdmin()}" name="idAdmin" hidden="hidden">
         <div class="mb-3">
             <label for="are" class="form-label">Area:</label>
-            <input type="text" class="form-control" id="are" placeholder="Area" name="area">
+            <input type="text" class="form-control" id="are" placeholder="Area" name="area" th:value="${c.getArea()}">
         </div>
         <div class="rows">
             <button type="submit" class="btn btn-primary">Enviar</button>

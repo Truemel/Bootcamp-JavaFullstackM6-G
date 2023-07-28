@@ -13,22 +13,22 @@
 <div th:replace="menu :: navy"></div>
 <form th:action="@{/usuario/editar-cliente}" method="post" class="form">
     <div th:each="c:${cliente}">
-        <input type="number" class="form-control" th:text="${c.getIdCliente()}" name="idCliente" hidden="hidden">
+        <input type="number" class="form-control" th:value="${c.getIdCliente()}" name="idCliente" hidden="hidden">
         <div class="mb-3">
             <label for="idC" class="form-label">ID Capacitación:</label>
-            <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="idC" placeholder="ID Capacitación" name="idCapac">
+            <input type="number"  pattern="[1-9][0-9]*" class="form-control" th:value="${c.getIdCapac()}" id="idC" placeholder="ID Capacitación" name="idCapac">
         </div>
         <div class="mb-3">
             <label for="tel" class="form-label">Telefono:</label>
-            <input type="number" class="form-control" id="tel" placeholder="Telefono" name="telefono">
+            <input type="number" class="form-control" id="tel" placeholder="Telefono" name="telefono" th:value="${c.getTelefono()}">
         </div>
         <div class="mb-3">
             <label for="dir" class="form-label">Direccion:</label>
-            <input type="text" class="form-control" id="dir" placeholder="Direccion" name="direccion">
+            <input type="text" class="form-control" id="dir" placeholder="Direccion" name="direccion" th:value="${c.getDireccion()}">
         </div>
         <div class="mb-3">
             <label for="eda" class="form-label">Edad:</label>
-            <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="eda" placeholder="Edad" name="edad">
+            <input type="number"  pattern="[1-9][0-9]*" class="form-control" id="eda" th:value="${c.getEdad()}" placeholder="Edad" name="edad">
         </div>
         <div class="rows">
             <button type="submit" class="btn btn-primary">Enviar</button>

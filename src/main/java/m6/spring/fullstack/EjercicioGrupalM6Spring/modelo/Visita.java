@@ -1,7 +1,7 @@
 package m6.spring.fullstack.EjercicioGrupalM6Spring.modelo;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 
 public class Visita {
 
@@ -13,7 +13,7 @@ public class Visita {
 
     public Visita(){
         id = idCliente = idProfe = 0;
-        fecha = new Date();
+        fecha = new Date(0);
         hora = new Time(0, 0, 0);
         lugar = detalle = "";
         realizado = false;
@@ -24,7 +24,18 @@ public class Visita {
         this.idCliente = idCliente;
         this.idProfe = idProfe;
         this.fecha = fecha;
-        this.hora = hora;
+        setHora(hora);
+        this.lugar = lugar;
+        this.detalle = detalle;
+        this.realizado = realizado;
+    }
+
+    public Visita(int id, int idCliente, int idProfe, Date fecha, String hora, String lugar, String detalle, boolean realizado){
+        this.id = id;
+        this.idCliente = idCliente;
+        this.idProfe = idProfe;
+        this.fecha = fecha;
+        setHora(hora);
         this.lugar = lugar;
         this.detalle = detalle;
         this.realizado = realizado;
@@ -68,6 +79,10 @@ public class Visita {
 
     public void setHora(Time hora) {
         this.hora = hora;
+    }
+
+    public void setHora(String hora){
+        setHora(Time.valueOf(hora));
     }
 
     public String getLugar() {
